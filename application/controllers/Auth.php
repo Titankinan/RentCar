@@ -31,7 +31,7 @@ class Auth extends CI_Controller
         $this->form_validation->set_rules('password2', 'Password', 'required|trim|matches[password1]');
 
 
-        $dataa['title'] = 'Instagram Register';
+        $dataa['title'] = 'Rentcar Register';
         if ($this->form_validation->run() == false) {
             $this->load->view('templates/auth_header', $dataa);
             $this->load->view('auth/registration');

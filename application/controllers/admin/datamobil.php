@@ -72,7 +72,7 @@ Class Datamobil extends CI_Controller{
 	{
 		$where = array('id_mobil' => $id);
 		$data['mobil'] = $this->db->query("SELECT * FROM mobil mb WHERE mb.id_mobil = '$id'")->result();
-		$data['mobil'] = $this->rental_model->get_data('mobil')->result();
+		$data['detail'] = $this->rental_model->ambil_id_mobil($id);
 
 		$this->load->view('template_admin/header');
 		$this->load->view('template_admin/sidebar');

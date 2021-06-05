@@ -11,6 +11,7 @@
          <table class="table table-hover table-striped table-borderd">
          	<thead>
          		<tr>
+         			<th>Gambar</th>
 	         		<th>Id</th>
 	         		<th>No KTP Pemilik</th>
 	         		<th>Nama Mobil</th>
@@ -20,7 +21,6 @@
 	         		<th>Status</th>
 	         		<th>Deskripsi</th>
 	         		<th></th>
-	         		<th></th>
 	         		<th>Aksi</th>
 	         		<th></th>
          		</tr>
@@ -28,11 +28,11 @@
          	<tbody>
          		<?php
          			foreach($mobil as $mb):  ?>
-         				<tr>
-         					<td>
-         						<img width="60px" src="<?php echo base_url().'assets/upload/'.$mb->gambar ?>">
-         					</td> 
+         				<tr> 
 	         				<!-- <td><?php echo $id_mobil++ ?></td> -->
+	         				<td>
+         						<img width="60px" src="<?php echo base_url().'assets/upload/'.$mb->gambar ?>">
+         					</td>
 	         				<td><?php echo $mb->id_mobil ?></td>
 	         				<td><?php echo $mb->no_ktp_pemilik ?></td>
 	         				<td><?php echo $mb->nama_mobil ?></td>

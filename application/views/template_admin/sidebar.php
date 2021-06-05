@@ -105,6 +105,9 @@
 
             <li><a class="nav-link" href="<?php echo base_url('admin/laporan_pembayaran')?> "><i class="fas fa-clipboard"></i> <span>Laporan Pembayaran</span></a></li>
             </ul>
+            
+            <li><a class="nav-link" href="<?php echo base_url('admin/laporan_pembayaran')?> "><i class="fas fa-clipboard"></i> <span>Laporan Pembayaran</span></a></li>
+            </ul>
 
             <li><a class="nav-link" href="<?php echo base_url('auth/logout')?> "><i class="fas fa-sign-out-alt"></i> <span>Logout</span></a></li>
             </ul>

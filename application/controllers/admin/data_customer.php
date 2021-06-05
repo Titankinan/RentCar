@@ -19,6 +19,7 @@ Class Data_customer extends CI_Controller{
 	
 	public function tambah_customer_aksi(){
 		$this->_rules();
+		
 		if($this->form_validation->run()==FALSE){
 			$this->tambah_customer();
 		}else{

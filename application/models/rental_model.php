@@ -28,6 +28,24 @@ class Rental_model extends CI_model{
 		}
 	}
 
+	public function ambil_id_review($id){
+		$hasil = $this->db->where('id_review', $id)->get('review');
+		if($hasil->num_rows() > 0){
+			return $hasil->result();
+		} else {
+			return false;
+		}
+	}
+
+	public function ambil_id_request($id){
+		$hasil = $this->db->where('id_permintaan', $id)->get('permintaan');
+		if($hasil->num_rows() > 0){
+			return $hasil->result();
+		} else {
+			return false;
+		}
+	}
+
 	public function cek_login(){
 		$username = set_value('username');
 		$password = set_value('password');
@@ -45,7 +63,19 @@ class Rental_model extends CI_model{
 		}
 	}
 
+	public function cek_wishlist($no_ktp,$id_mobil){
+		$result = $this->db
+						->where('no_ktp',$no_ktp)
+						->where('id_mobil',$id_mobil)
+						->get('daftar_keinginan');
+
+		if ($result->num_rows() > 0){
+			return TRUE;
+		}else{
+			return FALSE;
+		}
+	}
 
 }
 
- ?>}
+?>

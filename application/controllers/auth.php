@@ -34,12 +34,15 @@ class Auth extends CI_Controller{
 			}else{
 				/* pengecekan inputan berlanjut ke database */
 				/* mengambil dan mengecek variabel session username yang ada didatabase */
-				$this->session->set_userdata('username',$cek->username);
+				$this->session->set_userdata('username',$cek->username); 
 				/* mengambil dan mengecek variabel session role id yang ada didatabase */
 				/* berfungsi menandakan pembeda antara admin atau customer */
 				$this->session->set_userdata('role_id',$cek->role_id);
 				/* mengambil dan mengecek variabel session nama yang ada didatabase */
 				$this->session->set_userdata('nama',$cek->nama);
+
+				$this->session->set_userdata('id_customer', $cek->id_customer);
+				$this->session->set_userdata('no_ktp',$cek->no_ktp); 
 
 				/* mengecek role id dari akun user */
 				switch ($cek->role_id) {

@@ -8,7 +8,7 @@
          <a href="<?php echo base_url('admin/data_customer/tambah_customer')?>" class="btn btn-primary mb-3">Tambah customer</a>
          <?php echo $this->session->flashdata('pesan') ?>
 
-         <table class="table table-striped table-responsive table-bordered">
+         <table class="table table-striped table-responsive ">
          <thead>
          	<tr>
          		<th>No</th>
@@ -17,7 +17,9 @@
          		<th>Email</th>
          		<th>Username</th>
          		<th>Password</th>
+         		<th></th>
          		<th>Aksi</th>
+
          		
          	</tr>
          </thead>

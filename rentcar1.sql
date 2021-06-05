@@ -1,13 +1,14 @@
 -- phpMyAdmin SQL Dump
--- version 5.1.0
+-- version 4.8.3
 -- https://www.phpmyadmin.net/
 --
 -- Host: 127.0.0.1
--- Generation Time: May 01, 2021 at 11:15 AM
--- Server version: 10.4.18-MariaDB
--- PHP Version: 8.0.3
+-- Generation Time: May 15, 2021 at 05:48 AM
+-- Server version: 10.1.36-MariaDB
+-- PHP Version: 7.2.11
 
 SET SQL_MODE = "NO_AUTO_VALUE_ON_ZERO";
+SET AUTOCOMMIT = 0;
 START TRANSACTION;
 SET time_zone = "+00:00";
 
@@ -18,7 +19,7 @@ SET time_zone = "+00:00";
 /*!40101 SET NAMES utf8mb4 */;
 
 --
--- Database: `rentcar`
+-- Database: `rentcar1`
 --
 
 -- --------------------------------------------------------
@@ -33,16 +34,20 @@ CREATE TABLE `customer` (
   `nama` varchar(255) NOT NULL,
   `email` varchar(255) NOT NULL,
   `username` varchar(255) NOT NULL,
-  `password` varchar(255) NOT NULL
+  `password` varchar(255) NOT NULL,
+  `role_id` int(11) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `customer`
 --
 
-INSERT INTO `customer` (`id_customer`, `no_ktp`, `nama`, `email`, `username`, `password`) VALUES
-(1, '1301180283', 'Titan', 'tit@gmail.com', 'Titan', 'kinan'),
-(2, '1301180076', 'Rajih', 'jih@gmail.com', 'rajih', 'antimage');
+INSERT INTO `customer` (`id_customer`, `no_ktp`, `nama`, `email`, `username`, `password`, `role_id`) VALUES
+(1, '1301180283', 'Titanupdate', 'tit@gmail.com', 'Titan', '73136282658283a597fa0a2979fa2543', 0),
+(5, '111', 'test1', 'test1', 'test1', '5a105e8b9d40e1329780d62ea2265d8a', 0),
+(6, '123', 'masuk1', 'masuk1@gmail.com', 'masuk1', 'f927d1f6a634cd601e4c9feb76bf4f7e', 0),
+(8, '1234', 'admin1', 'admin1@gmail.com', 'admin1', 'e00cf25ad42683b3df678c61f42c6bda', 1),
+(9, '121', 'customer1', 'customer1@gmail.com', 'customer1', 'ffbc4675f864e0e9aab8bdf7a0437010', 2);
 
 -- --------------------------------------------------------
 
@@ -51,7 +56,7 @@ INSERT INTO `customer` (`id_customer`, `no_ktp`, `nama`, `email`, `username`, `p
 --
 
 CREATE TABLE `daftar_keinginan` (
-  `id_keinginan` varchar(255) NOT NULL,
+  `id_keinginan` int(11) NOT NULL,
   `no_ktp` varchar(255) NOT NULL,
   `id_mobil` varchar(255) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
@@ -61,10 +66,13 @@ CREATE TABLE `daftar_keinginan` (
 --
 
 INSERT INTO `daftar_keinginan` (`id_keinginan`, `no_ktp`, `id_mobil`) VALUES
-('1', '1301180283', '5'),
-('2', '1301180283', '3'),
-('3', '1301184032', '1'),
-('4', '1301180076', '3');
+(1, '1301180283', '5'),
+(2, '1301180283', '3'),
+(3, '1301184032', '1'),
+(4, '1301180076', '3'),
+(5, '121', '4'),
+(6, '121', '10'),
+(7, '121', '14');
 
 -- --------------------------------------------------------
 
@@ -109,10 +117,13 @@ CREATE TABLE `mobil` (
 --
 
 INSERT INTO `mobil` (`id_mobil`, `no_ktp_pemilik`, `nama_mobil`, `harga`, `warna`, `plat_nomor`, `deskripsi`, `status`, `gambar`) VALUES
-(4, '111', 'jazz 2017', 400, 'putih', 'D 1 TO', 'boros bensin', '1', 'jazz1.jpg'),
+(4, '111', 'jazz 2017', 400, 'putih', 'D 1 TO', 'boros bensin', '0', 'jazz1.jpg'),
 (6, '222', 'avanza', 121, 'putih', 'D1113', 'mogok euy', '1', 'avanza1.jpg'),
-(10, '333', 'fortuner 12', 121, 'putih', 'D441', 'wih', '0', 'fortuner11.jpeg'),
-(11, '444', 'CR-v 2018', 232, 'putih', 'B 44U B', 'bau', '1', 'crv1.jpg');
+(10, '333', 'fortuner 12', 121, 'putih', 'D441', 'wih', '1', 'fortuner11.jpeg'),
+(11, '444', 'CR-v 2018', 232, 'putih', 'B 44U B', 'bau', '1', 'crv1.jpg'),
+(12, '323', 'JAZZ AHAY', 1000, 'merah', 'D1111D', 'wih', '1', 'jazz11.jpg'),
+(13, '443', 'FORTUNER AHAY', 2000, 'putih', 'D222D', 'wih', '0', 'fortuner12.jpeg'),
+(14, '222', 'JAZZ AHAY2', 1000, 'merah', 'D44!D', 'wih', '1', 'jazz12.jpg');
 
 -- --------------------------------------------------------
 
@@ -140,21 +151,24 @@ INSERT INTO `pembayaran` (`id_pembayaran`, `id_pemesanan`, `total_harga`) VALUES
 --
 
 CREATE TABLE `pemesanan` (
-  `id_pemesanan` varchar(255) NOT NULL,
+  `id_pemesanan` int(255) NOT NULL,
   `no_ktp` varchar(255) NOT NULL,
+  `id_customer` int(11) NOT NULL,
   `id_mobil` varchar(255) NOT NULL,
   `tanggal_pesan` date NOT NULL,
-  `tanggal_kembali` date NOT NULL
+  `tanggal_kembali` date NOT NULL,
+  `total` varchar(120) NOT NULL,
+  `status_pengembalian` varchar(120) NOT NULL,
+  `status_rental` varchar(120) NOT NULL
 ) ENGINE=InnoDB DEFAULT CHARSET=utf8mb4;
 
 --
 -- Dumping data for table `pemesanan`
 --
 
-INSERT INTO `pemesanan` (`id_pemesanan`, `no_ktp`, `id_mobil`, `tanggal_pesan`, `tanggal_kembali`) VALUES
-('1', '1301180238', '4', '2021-04-20', '2021-04-27'),
-('2', '1301180076', '1', '2021-04-01', '2021-04-08'),
-('3', '1301180351', '3', '2021-04-10', '2021-04-17');
+INSERT INTO `pemesanan` (`id_pemesanan`, `no_ktp`, `id_customer`, `id_mobil`, `tanggal_pesan`, `tanggal_kembali`, `total`, `status_pengembalian`, `status_rental`) VALUES
+(18, '121', 9, '13', '2021-05-15', '2021-05-22', '14000', 'Kembali', 'Selesai'),
+(19, '121', 9, '4', '2021-05-21', '2021-05-24', '1200', 'Belum Kembali', 'Belum Selesai');
 
 -- --------------------------------------------------------
 
@@ -231,10 +245,22 @@ ALTER TABLE `customer`
   ADD PRIMARY KEY (`id_customer`);
 
 --
+-- Indexes for table `daftar_keinginan`
+--
+ALTER TABLE `daftar_keinginan`
+  ADD PRIMARY KEY (`id_keinginan`);
+
+--
 -- Indexes for table `mobil`
 --
 ALTER TABLE `mobil`
   ADD PRIMARY KEY (`id_mobil`);
+
+--
+-- Indexes for table `pemesanan`
+--
+ALTER TABLE `pemesanan`
+  ADD PRIMARY KEY (`id_pemesanan`);
 
 --
 -- AUTO_INCREMENT for dumped tables
@@ -244,13 +270,25 @@ ALTER TABLE `mobil`
 -- AUTO_INCREMENT for table `customer`
 --
 ALTER TABLE `customer`
-  MODIFY `id_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=5;
+  MODIFY `id_customer` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=10;
+
+--
+-- AUTO_INCREMENT for table `daftar_keinginan`
+--
+ALTER TABLE `daftar_keinginan`
+  MODIFY `id_keinginan` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=8;
 
 --
 -- AUTO_INCREMENT for table `mobil`
 --
 ALTER TABLE `mobil`
-  MODIFY `id_mobil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=12;
+  MODIFY `id_mobil` int(11) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=15;
+
+--
+-- AUTO_INCREMENT for table `pemesanan`
+--
+ALTER TABLE `pemesanan`
+  MODIFY `id_pemesanan` int(255) NOT NULL AUTO_INCREMENT, AUTO_INCREMENT=20;
 COMMIT;
 
 /*!40101 SET CHARACTER_SET_CLIENT=@OLD_CHARACTER_SET_CLIENT */;

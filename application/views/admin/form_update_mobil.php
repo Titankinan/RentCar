@@ -71,7 +71,6 @@
                				<button type="submit" class="btn btn-primary mt-4">Simpan</button>
                				<button type="reset" class="btn btn-danger mt-4">Reset</button>
                			</div>	
-                              <?php echo('_______________________________________________________________________________________') ?>
                		</div>
                		</form>
 
